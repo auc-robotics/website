@@ -12,7 +12,7 @@ export default function Home() {
         <div className="flex aspect-square max-h-full min-w-96 flex-1 items-center justify-center rounded-md bg-neutral-500 font-bold text-white">
           CAROUSEL PLACEHOLDER
         </div>
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 -z-50">
           <Canvas />
         </div>
       </section>

@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <div className="*:p-6">
       <section className="flex flex-col items-center justify-around gap-8 md:h-[80svh] md:flex-row">
-        <h2 className="font-display text-secondary text-7xl leading-[0.85] md:text-8xl">
+        <h2 className="font-display text-secondary animate-slide-down text-7xl leading-[0.85] md:text-8xl">
           UNLEASH THE LIMITLESS POSSIBILITIES OF{" "}
           <span className="text-primary">ROBOTICS</span>
         </h2>

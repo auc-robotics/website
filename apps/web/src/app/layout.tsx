@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`antialiased ${bourgeouisRounded.variable}`}>
-      <body className="bg-background">
+      <body className="bg-slate-50">
         <Header />
         {children}
       </body>

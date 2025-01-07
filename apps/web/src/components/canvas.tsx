@@ -1,16 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
-const resolveColor = (color: string) => {
-  if (color.startsWith("--")) {
-    return getComputedStyle(document.body).getPropertyValue(color);
-  }
-  return color;
-};
-
-const clamp = (n: number, min: number, max: number) =>
-  Math.min(max, Math.max(min, n));
+import { clamp, resolveColor, transparent } from "@/util";
 
 type Point = [number, number];
 
@@ -193,9 +184,9 @@ class CanvasCtx {
   animate(t: number) {
     const c = this.ctx;
     c.clearRect(0, 0, c.canvas.width, c.canvas.height);
-    this.objects.forEach((object) => {
+    for (const object of this.objects) {
       object.animate(this, t);
-    });
+    }
     this.afId = requestAnimationFrame(this.animate.bind(this));
   }
 
@@ -213,7 +204,7 @@ export default function Canvas() {
       height: 10,
       preserveAspectRatio: true,
     });
-    const gradLen = 1;
+    const gradLen = 2;
     const line = new Line({
       strokeStyle: "--color-slate-100",
       lineWidth: 5,
@@ -222,33 +213,25 @@ export default function Canvas() {
           start: -gradLen,
           end: 0,
           stops: [
-            [0, "--color-slate-100"],
+            [0, transparent("--color-slate-50")],
             [0.3, "--color-sky-400"],
             [0.7, "--color-sky-400"],
-            [1, "--color-slate-100"],
-          ],
-        },
-        {
-          start: -3 - gradLen,
-          end: -3,
-          stops: [
-            [0, "--color-slate-100"],
-            [0.3, "--color-sky-400"],
-            [0.7, "--color-sky-400"],
-            [1, "--color-slate-100"],
+            [1, transparent("--color-slate-50")],
           ],
         },
       ],
       update: (l, dt) => {
-        const speed = 4 / 1000;
-        l.grads.forEach((g) => {
+        const speed = 3 / 1000;
+        for (const g of l.grads) {
           g.start += dt * speed;
           g.end += dt * speed;
           if (g.start > l.totalLength()) {
-            g.start = -gradLen;
-            g.end = 0;
+            g.start %= l.totalLength();
+            g.end %= l.totalLength();
+            g.start -= gradLen;
+            g.end -= gradLen;
           }
-        });
+        }
       },
     });
     line.addPoint(1, 1);

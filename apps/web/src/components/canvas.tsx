@@ -9,6 +9,9 @@ const resolveColor = (color: string) => {
   return color;
 };
 
+const clamp = (n: number, min: number, max: number) =>
+  Math.min(max, Math.max(min, n));
+
 type Point = [number, number];
 
 interface CanvasObject {
@@ -74,27 +77,32 @@ class Line implements CanvasObject {
     c.lineCap = "round";
     c.lineJoin = "round";
 
+    for (let i = 1; i < this.points.length; i++) {
+      const [x1, y1] = this.points[i - 1];
+      const [x2, y2] = this.points[i];
+
+      c.beginPath();
+      c.moveTo(...canvas.toPixelPerfectCoords(x1, y1));
+      c.lineTo(...canvas.toPixelPerfectCoords(x2, y2));
+      c.stroke();
+    }
+
     const isGrad =
       this.gradStart !== undefined &&
       this.gradEnd !== undefined &&
       this.gradStops !== undefined;
 
-    let gs, ge;
-    if (isGrad)
-      [gs, ge] = [this.gradStart!, this.gradEnd!].map(
-        (x) => x * this.totalLength(),
-      );
-    let currentLength = 0;
-    for (let i = 1; i < this.points.length; i++) {
-      const [x1, y1] = this.points[i - 1];
-      const [x2, y2] = this.points[i];
-      const [dx, dy] = [x2 - x1, y2 - y1];
-      const segmentLength = Math.hypot(dx, dy);
+    if (isGrad) {
+      const [gs, ge] = [this.gradStart!, this.gradEnd!];
+      let currentLength = 0;
+      for (let i = 1; i < this.points.length; i++) {
+        const [x1, y1] = this.points[i - 1];
+        const [x2, y2] = this.points[i];
+        const [dx, dy] = [x2 - x1, y2 - y1];
+        const segmentLength = Math.hypot(dx, dy);
 
-      if (isGrad) {
-        const startFactor = (gs! - currentLength) / segmentLength;
-        const endFactor = (ge! - currentLength) / segmentLength;
-        currentLength += segmentLength;
+        const startFactor = (gs - currentLength) / segmentLength;
+        const endFactor = (ge - currentLength) / segmentLength;
 
         const grad = c.createLinearGradient(
           ...canvas.toCoords(x1 + dx * startFactor, y1 + dy * startFactor),
@@ -103,13 +111,25 @@ class Line implements CanvasObject {
         for (const [stop, color] of this.gradStops!) {
           grad.addColorStop(stop, resolveColor(color));
         }
-        c.strokeStyle = grad;
-      }
 
-      c.beginPath();
-      c.moveTo(...canvas.toPixelPerfectCoords(x1, y1));
-      c.lineTo(...canvas.toPixelPerfectCoords(x2, y2));
-      c.stroke();
+        c.strokeStyle = grad;
+        c.beginPath();
+        c.moveTo(
+          ...canvas.toPixelPerfectCoords(
+            x1 + dx * clamp(startFactor, 0, 1),
+            y1 + dy * clamp(startFactor, 0, 1),
+          ),
+        );
+        c.lineTo(
+          ...canvas.toPixelPerfectCoords(
+            x1 + dx * clamp(endFactor, 0, 1),
+            y1 + dy * clamp(endFactor, 0, 1),
+          ),
+        );
+        c.stroke();
+
+        currentLength += segmentLength;
+      }
     }
   }
 
@@ -195,13 +215,15 @@ export default function Canvas() {
 
   useEffect(() => {
     const ctx = new CanvasCtx(canvasRef.current!, {
-      height: 5,
+      height: 10,
       preserveAspectRatio: true,
     });
+    const gradLen = 1;
     const line = new Line({
+      strokeStyle: "--color-slate-100",
       lineWidth: 5,
-      gradStart: 0,
-      gradEnd: 0.1,
+      gradStart: -gradLen,
+      gradEnd: 0,
       gradStops: [
         [0, "--color-slate-100"],
         [0.3, "--color-sky-500"],
@@ -209,19 +231,19 @@ export default function Canvas() {
         [1, "--color-slate-100"],
       ],
       update: (l, dt) => {
-        const speed = 0.0005;
+        const speed = 4 / 1000;
         l.gradStart! += dt * speed;
         l.gradEnd! += dt * speed;
-        if (l.gradStart! > 1) {
-          l.gradStart! = -0.1;
+        if (l.gradStart! > l.totalLength()) {
+          l.gradStart! = -gradLen;
           l.gradEnd! = 0;
         }
       },
     });
-    line.addPoint(0, 0);
     line.addPoint(1, 1);
-    line.addPoint(2, 1);
-    line.addPoint(3, 2);
+    line.addPoint(2, 2);
+    line.addPoint(8, 2);
+    line.addPoint(9, 3);
     ctx.add(line);
     requestAnimationFrame(ctx.animate.bind(ctx));
 

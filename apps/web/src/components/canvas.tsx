@@ -19,14 +19,18 @@ interface CanvasObject {
   animate(canvas: CanvasCtx, dt: number): void;
 }
 
+interface Gradient {
+  start: number;
+  end: number;
+  stops: [number, string][];
+}
+
 class Line implements CanvasObject {
-  points: Point[] = [];
+  points: Point[];
   lineWidth: number;
   strokeStyle: string;
 
-  gradStart?: number;
-  gradEnd?: number;
-  gradStops?: [number, string][];
+  grads: Gradient[];
 
   private prevT: number = 0;
   update?: (line: Line, dt: number) => void;
@@ -35,23 +39,19 @@ class Line implements CanvasObject {
     options: {
       lineWidth?: number;
       strokeStyle?: string;
-      gradStart?: number;
-      gradEnd?: number;
-      gradStops?: [number, string][];
+      gradients?: Gradient[];
       update?: (line: Line, dt: number) => void;
     } = {},
   ) {
     options.lineWidth ||= 1;
     options.strokeStyle ||= "black";
 
+    this.points = [];
+
     this.lineWidth = options.lineWidth;
     this.strokeStyle = resolveColor(options.strokeStyle);
 
-    if (options.gradStops || options.gradStart || options.gradEnd) {
-      this.gradStart = options.gradStart;
-      this.gradEnd = options.gradEnd;
-      this.gradStops = options.gradStops;
-    }
+    this.grads = options.gradients || [];
 
     this.update = options.update;
   }
@@ -87,13 +87,8 @@ class Line implements CanvasObject {
       c.stroke();
     }
 
-    const isGrad =
-      this.gradStart !== undefined &&
-      this.gradEnd !== undefined &&
-      this.gradStops !== undefined;
-
-    if (isGrad) {
-      const [gs, ge] = [this.gradStart!, this.gradEnd!];
+    for (const { start, end, stops } of this.grads) {
+      const [gs, ge] = [start, end];
       let currentLength = 0;
       for (let i = 1; i < this.points.length; i++) {
         const [x1, y1] = this.points[i - 1];
@@ -108,25 +103,25 @@ class Line implements CanvasObject {
           ...canvas.toCoords(x1 + dx * startFactor, y1 + dy * startFactor),
           ...canvas.toCoords(x1 + dx * endFactor, y1 + dy * endFactor),
         );
-        for (const [stop, color] of this.gradStops!) {
+        for (const [stop, color] of stops) {
           grad.addColorStop(stop, resolveColor(color));
         }
 
         c.strokeStyle = grad;
         c.beginPath();
-        c.moveTo(
-          ...canvas.toPixelPerfectCoords(
-            x1 + dx * clamp(startFactor, 0, 1),
-            y1 + dy * clamp(startFactor, 0, 1),
-          ),
+        const [gx1, gy1] = canvas.toPixelPerfectCoords(
+          x1 + dx * clamp(startFactor, 0, 1),
+          y1 + dy * clamp(startFactor, 0, 1),
         );
-        c.lineTo(
-          ...canvas.toPixelPerfectCoords(
-            x1 + dx * clamp(endFactor, 0, 1),
-            y1 + dy * clamp(endFactor, 0, 1),
-          ),
+        const [gx2, gy2] = canvas.toPixelPerfectCoords(
+          x1 + dx * clamp(endFactor, 0, 1),
+          y1 + dy * clamp(endFactor, 0, 1),
         );
-        c.stroke();
+        if (gx1 !== gx2 || gy1 !== gy2) {
+          c.moveTo(gx1, gy1);
+          c.lineTo(gx2, gy2);
+          c.stroke();
+        }
 
         currentLength += segmentLength;
       }
@@ -222,22 +217,38 @@ export default function Canvas() {
     const line = new Line({
       strokeStyle: "--color-slate-100",
       lineWidth: 5,
-      gradStart: -gradLen,
-      gradEnd: 0,
-      gradStops: [
-        [0, "--color-slate-100"],
-        [0.3, "--color-sky-500"],
-        [0.7, "--color-sky-500"],
-        [1, "--color-slate-100"],
+      gradients: [
+        {
+          start: -gradLen,
+          end: 0,
+          stops: [
+            [0, "--color-slate-100"],
+            [0.3, "--color-sky-400"],
+            [0.7, "--color-sky-400"],
+            [1, "--color-slate-100"],
+          ],
+        },
+        {
+          start: -3 - gradLen,
+          end: -3,
+          stops: [
+            [0, "--color-slate-100"],
+            [0.3, "--color-sky-400"],
+            [0.7, "--color-sky-400"],
+            [1, "--color-slate-100"],
+          ],
+        },
       ],
       update: (l, dt) => {
         const speed = 4 / 1000;
-        l.gradStart! += dt * speed;
-        l.gradEnd! += dt * speed;
-        if (l.gradStart! > l.totalLength()) {
-          l.gradStart! = -gradLen;
-          l.gradEnd! = 0;
-        }
+        l.grads.forEach((g) => {
+          g.start += dt * speed;
+          g.end += dt * speed;
+          if (g.start > l.totalLength()) {
+            g.start = -gradLen;
+            g.end = 0;
+          }
+        });
       },
     });
     line.addPoint(1, 1);

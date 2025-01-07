@@ -2,7 +2,14 @@ import "./globals.css";
 import Header from "@/components/header";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Roboto } from "next/font/google";
 
+const roboto = Roboto({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto",
+});
 const bourgeouisRounded = localFont({
   src: [
     {
@@ -23,7 +30,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`antialiased ${bourgeouisRounded.variable}`}>
+    <html
+      lang="en"
+      className={`antialiased ${roboto.className} ${bourgeouisRounded.variable}`}
+    >
       <body className="bg-slate-50">
         <Header />
         {children}

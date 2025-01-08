@@ -1,47 +1,35 @@
 @import "tailwindcss";
+@plugin "tailwindcss-react-aria-components";
+@plugin "tailwindcss-animate";
 
 @theme {
-    --color-sky-50: #f2f9fd;
-    --color-sky-100: #e5f0f9;
-    --color-sky-200: #c5e2f2;
-    --color-sky-300: #92cae7;
-    --color-sky-400: #57add9;
-    --color-sky-500: #3293c5;
-    --color-sky-600: #2276a7;
-    --color-sky-700: #1f6692;
-    --color-sky-800: #1c5170;
-    --color-sky-900: #1c445e;
-    --color-sky-950: #132c3e;
+  --color-sky-50: #f2f9fd;
+  --color-sky-100: #e5f0f9;
+  --color-sky-200: #c5e2f2;
+  --color-sky-300: #92cae7;
+  --color-sky-400: #57add9;
+  --color-sky-500: #3293c5;
+  --color-sky-600: #2276a7;
+  --color-sky-700: #1f6692;
+  --color-sky-800: #1c5170;
+  --color-sky-900: #1c445e;
+  --color-sky-950: #132c3e;
 
-    --color-slate-50: #d5e9f5;
-    --color-slate-100: #b5cfe0;
-    --color-slate-200: #97b5cc;
-    --color-slate-300: #7c9db8;
-    --color-slate-400: #6485a3;
-    --color-slate-500: #4e6e8f;
-    --color-slate-600: #3b597a;
-    --color-slate-700: #2a4566;
-    --color-slate-800: #1d3352;
-    --color-slate-900: #11233d;
-    --color-slate-950: #091529;
+  --color-slate-50: #d5e9f5;
+  --color-slate-100: #b5cfe0;
+  --color-slate-200: #97b5cc;
+  --color-slate-300: #7c9db8;
+  --color-slate-400: #6485a3;
+  --color-slate-500: #4e6e8f;
+  --color-slate-600: #3b597a;
+  --color-slate-700: #2a4566;
+  --color-slate-800: #1d3352;
+  --color-slate-900: #11233d;
+  --color-slate-950: #091529;
 
-    --color-primary: var(--color-sky-700);
-    --color-secondary: #001c49;
+  --color-primary: var(--color-sky-700);
+  --color-secondary: #001c49;
 
-    --font-sans: var(--font-roboto), sans-serif;
-    --font-display: var(--font-bourgeois-rounded), sans-serif;
-
-    --animate-slide-down: slide-down 0.5s ease-out;
-
-    @keyframes slide-down {
-        from {
-            transform: translateY(-1rem);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
+  --font-sans: var(--font-roboto), sans-serif;
+  --font-display: var(--font-bourgeois-rounded), sans-serif;
 }

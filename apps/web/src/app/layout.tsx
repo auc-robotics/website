@@ -32,11 +32,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`antialiased ${roboto.className} ${bourgeouisRounded.variable}`}
+      className={`antialiased ${roboto.variable} ${bourgeouisRounded.variable}`}
     >
       <body className="bg-slate-50">
         <Header />
-        {children}
+        <div>{children}</div>
       </body>
     </html>
   );

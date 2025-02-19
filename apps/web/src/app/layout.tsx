@@ -3,6 +3,7 @@ import Header from "@/components/header";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Roboto } from "next/font/google";
+import { ClientProvider } from "@/components/client-provider";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -35,8 +36,10 @@ export default function RootLayout({
       className={`antialiased ${roboto.variable} ${bourgeouisRounded.variable}`}
     >
       <body className="bg-slate-50">
-        <Header />
-        <div>{children}</div>
+        <ClientProvider>
+          <Header />
+          <div>{children}</div>
+        </ClientProvider>
       </body>
     </html>
   );

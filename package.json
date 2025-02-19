@@ -4,8 +4,5 @@
   "workspaces": [
     "apps/server",
     "apps/web"
-  ],
-  "dependencies": {
-    "@react-aria/utils": "^3.26.0"
-  }
+  ]
 }

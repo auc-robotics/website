@@ -15,17 +15,17 @@
   --color-sky-900: #1c445e;
   --color-sky-950: #132c3e;
 
-  --color-slate-50: #d5e9f5;
-  --color-slate-100: #b5cfe0;
-  --color-slate-200: #97b5cc;
-  --color-slate-300: #7c9db8;
-  --color-slate-400: #6485a3;
-  --color-slate-500: #4e6e8f;
-  --color-slate-600: #3b597a;
-  --color-slate-700: #2a4566;
-  --color-slate-800: #1d3352;
-  --color-slate-900: #11233d;
-  --color-slate-950: #091529;
+  --color-slate-50: #d5e4ed;
+  --color-slate-100: #cedfea;
+  --color-slate-200: #c1d3e1;
+  --color-slate-300: #abbfd0;
+  --color-slate-400: #889db1;
+  --color-slate-500: #56697c;
+  --color-slate-600: #2b3947;
+  --color-slate-700: #141e2a;
+  --color-slate-800: #09111b;
+  --color-slate-900: #040b14;
+  --color-slate-950: #020812;
 
   --color-primary: var(--color-sky-700);
   --color-secondary: #001c49;

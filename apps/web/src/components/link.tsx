@@ -1,16 +1,13 @@
-import NextLink from "next/link";
-import type { LinkProps } from "next/link";
+import { Link as RacLink } from "react-aria-components";
+import type { LinkProps } from "react-aria-components";
 
-export default function Link({
-  children,
-  ...props
-}: LinkProps & { children: React.ReactNode }) {
+export default function Link({ children, ...props }: LinkProps) {
   return (
-    <NextLink
+    <RacLink
       {...props}
       className="text-secondary hover:text-primary transition"
     >
       {children}
-    </NextLink>
+    </RacLink>
   );
 }

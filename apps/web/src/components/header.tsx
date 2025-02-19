@@ -25,7 +25,7 @@ const NavItems = () => (
 
 export default function Header() {
   return (
-    <div className="flex h-18 items-center gap-4 border-b border-b-slate-100 px-4 sm:justify-between">
+    <div className="flex h-18 items-center gap-4 border-b border-b-slate-200 px-4 sm:justify-between">
       <div className="sm:hidden">
         <DialogTrigger>
           <Button
@@ -36,12 +36,15 @@ export default function Header() {
           </Button>
           <ModalOverlay isDismissable>
             <SidebarModal side="left">
-              <Dialog className="text-secondary outline-none">
-                <div className="flex h-18 w-full items-center gap-4 border-b border-b-slate-100 px-4">
+              <Dialog className="outline-none">
+                <div className="flex h-18 w-full items-center gap-4 border-b border-b-slate-200 px-4">
                   <Button slot="close">
                     <XIcon size="40" />
                   </Button>
-                  <Heading slot="title" className="text-2xl">
+                  <Heading
+                    slot="title"
+                    className="text-secondary text-2xl font-bold"
+                  >
                     Navigation
                   </Heading>
                 </div>
@@ -58,11 +61,14 @@ export default function Header() {
       <NextLink href="/" className="flex items-center gap-4 py-2">
         <Image src={Logo} alt="AUC Robotics Logo" className="size-16" />
         {/* HACK: -translate-y makes it look more centered vertically */}
-        <h1 className="font-display text-primary -translate-y-[8%] text-5xl">
+        <Heading
+          level={1}
+          className="font-display text-primary -translate-y-[8%] text-4xl sm:text-5xl"
+        >
           AUC ROBOTICS
-        </h1>
+        </Heading>
       </NextLink>
-      <nav className="text-secondary text-lg font-bold">
+      <nav className="text-xl">
         <div className="max-sm:hidden">
           <ul className="flex gap-8">
             <NavItems />

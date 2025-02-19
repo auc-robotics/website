@@ -7,7 +7,7 @@ export default function Home() {
           <span className="text-primary">ROBOTICS</span>
         </h2>
 
-        <div className="transition- flex aspect-square max-h-full min-w-96 flex-1 items-center justify-center rounded-md bg-neutral-500 font-bold text-white">
+        <div className="flex aspect-square max-h-full min-w-80 flex-1 items-center justify-center rounded-md bg-neutral-500 font-bold text-white">
           CAROUSEL PLACEHOLDER
         </div>
       </section>

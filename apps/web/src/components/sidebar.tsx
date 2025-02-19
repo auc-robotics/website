@@ -14,7 +14,7 @@ export default function SidebarModal({
   return (
     <Modal
       {...props}
-      className={`entering:animate-in exiting:animate-out absolute h-screen w-64 bg-slate-50 duration-300 ease-in-out ${sideClasses[side]}`}
+      className={`entering:animate-in exiting:animate-out absolute h-screen w-64 bg-slate-100 duration-300 ease-in-out ${sideClasses[side]}`}
     >
       {children}
     </Modal>

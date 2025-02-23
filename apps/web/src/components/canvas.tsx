@@ -1,22 +1,20 @@
-"use client";
-
 import { useEffect, useRef } from "react";
-import { clamp, resolveColor, transparent } from "@/util";
+import { clamp, resolveColor } from "@/util";
 
-type Point = [number, number];
+export type Point = [number, number];
 
-interface CanvasObject {
+export interface CanvasObject {
   draw(canvas: CanvasCtx): void;
   animate(canvas: CanvasCtx, dt: number): void;
 }
 
-interface Gradient {
+export interface Gradient {
   start: number;
   end: number;
   stops: [number, string][];
 }
 
-class Line implements CanvasObject {
+export class Line implements CanvasObject {
   points: Point[];
   lineWidth: number;
   strokeStyle: string;
@@ -128,6 +126,8 @@ class Line implements CanvasObject {
 
 class CanvasCtx {
   ctx: CanvasRenderingContext2D;
+  ox: number;
+  oy: number;
   width: number;
   height: number;
   preserveAspectRatio: boolean;
@@ -139,10 +139,14 @@ class CanvasCtx {
     options: {
       width?: number;
       height?: number;
+      ox?: number;
+      oy?: number;
       preserveAspectRatio?: boolean;
     } = {},
   ) {
     this.ctx = canvas.getContext("2d")!;
+    this.ox = options.ox || 0;
+    this.oy = options.oy || 0;
     this.width = options.width || 1;
     this.height = options.height || 1;
     this.preserveAspectRatio = options.preserveAspectRatio || false;
@@ -170,8 +174,8 @@ class CanvasCtx {
 
   toCoords(x: number, y: number): Point {
     return [
-      (x / this.width) * this.ctx.canvas.width,
-      (y / this.height) * this.ctx.canvas.height,
+      (x / this.width) * this.ctx.canvas.width + this.ox,
+      (y / this.height) * this.ctx.canvas.height + this.oy,
     ];
   }
   toPixelPerfectCoords(x: number, y: number): Point {
@@ -196,49 +200,30 @@ class CanvasCtx {
   }
 }
 
-export default function Canvas() {
+export default function Canvas({
+  children,
+  ox,
+  oy,
+  width,
+  height,
+}: {
+  children: (ctx: CanvasCtx) => void;
+  ox?: number;
+  oy?: number;
+  width?: number;
+  height?: number;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const ctx = new CanvasCtx(canvasRef.current!, {
-      height: 10,
+      ox,
+      oy,
+      width,
+      height,
       preserveAspectRatio: true,
     });
-    const gradLen = 2;
-    const line = new Line({
-      strokeStyle: "--color-slate-100",
-      lineWidth: 5,
-      gradients: [
-        {
-          start: -gradLen,
-          end: 0,
-          stops: [
-            [0, transparent("--color-slate-50")],
-            [0.3, "--color-sky-400"],
-            [0.7, "--color-sky-400"],
-            [1, transparent("--color-slate-50")],
-          ],
-        },
-      ],
-      update: (l, dt) => {
-        const speed = 3 / 1000;
-        for (const g of l.grads) {
-          g.start += dt * speed;
-          g.end += dt * speed;
-          if (g.start > l.totalLength()) {
-            g.start %= l.totalLength();
-            g.end %= l.totalLength();
-            g.start -= gradLen;
-            g.end -= gradLen;
-          }
-        }
-      },
-    });
-    line.addPoint(1, 1);
-    line.addPoint(2, 2);
-    line.addPoint(8, 2);
-    line.addPoint(9, 3);
-    ctx.add(line);
+    children(ctx);
     requestAnimationFrame(ctx.animate.bind(ctx));
 
     return () => {

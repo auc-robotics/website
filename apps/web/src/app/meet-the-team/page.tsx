@@ -96,9 +96,14 @@ export default function MeetTheTeam() {
             the limits of technology one robot at a time.
           </p>
         </div>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex w-full flex-col flex-wrap gap-4 *:odd:self-start *:even:self-end">
           {team.map((member, i) => (
-            <Avatar {...member} key={i} />
+            <div key={i}>
+              <Avatar
+                {...member}
+                orientation={i % 2 === 1 ? "right" : "left"}
+              />
+            </div>
           ))}
         </div>
       </section>

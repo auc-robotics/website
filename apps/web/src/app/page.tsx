@@ -1,5 +1,3 @@
-import Canvas from "@/components/canvas";
-
 export default function Home() {
   return (
     <div className="*:px-32 *:py-6">
@@ -9,11 +7,8 @@ export default function Home() {
           <span className="text-primary">ROBOTICS</span>
         </h2>
 
-        <div className="flex aspect-square max-h-full min-w-80 flex-1 items-center justify-center rounded-md bg-neutral-500 font-bold text-white">
+        <div className="flex aspect-square max-h-full min-w-80 flex-1 items-center justify-center rounded-md bg-neutral-500/10 font-bold text-white">
           CAROUSEL PLACEHOLDER
-        </div>
-        <div className="absolute inset-0 -z-50">
-          <Canvas />
         </div>
       </section>
       <section className="h-[80svh] bg-slate-950"></section>

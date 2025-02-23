@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`antialiased ${roboto.variable} ${bourgeouisRounded.variable}`}
+      className={`scroll-smooth antialiased ${roboto.variable} ${bourgeouisRounded.variable}`}
     >
       <body className="bg-slate-50">
         <ClientProvider>

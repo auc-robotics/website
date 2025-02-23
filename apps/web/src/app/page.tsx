@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="*:p-6">
+    <div className="*:px-32 *:py-6">
       <section className="flex flex-col items-center justify-around gap-8 md:h-[80svh] md:flex-row">
         <h2 className="font-display text-secondary animate-in fade-in slide-in-from-top-4 text-7xl leading-[0.85] transition-none duration-500 md:text-8xl">
           UNLEASH THE LIMITLESS POSSIBILITIES OF{" "}

@@ -12,7 +12,7 @@ import SidebarModal from "@/components/sidebar";
 const NavItems = () => (
   <>
     <li>
-      <Link href="#">About</Link>
+      <Link href="/meet-the-team">About</Link>
     </li>
     <li>
       <Link href="#">Events</Link>

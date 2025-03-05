@@ -8,6 +8,7 @@ import { Heading, DialogTrigger, Dialog, Button } from "react-aria-components";
 import { MenuIcon, XIcon } from "lucide-react";
 import { ModalOverlay } from "@/components/modal";
 import SidebarModal from "@/components/sidebar";
+import LoginButton from "./loginButton";
 
 const NavItems = () => (
   <>
@@ -68,12 +69,13 @@ export default function Header() {
           AUC ROBOTICS
         </Heading>
       </NextLink>
-      <nav className="text-xl">
+      <nav className="flex items-center gap-4 text-xl">
         <div className="max-sm:hidden">
           <ul className="flex gap-8">
             <NavItems />
           </ul>
         </div>
+        <LoginButton />
       </nav>
     </div>
   );

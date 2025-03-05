@@ -1,3 +1,5 @@
+import TypeWriter from "@/components/typewriter";
+
 export default function Home() {
   return (
     <div className="*:px-32 *:py-6">
@@ -11,7 +13,19 @@ export default function Home() {
           CAROUSEL PLACEHOLDER
         </div>
       </section>
-      <section className="h-[80svh] bg-slate-950"></section>
+      <section className="flex h-[80svh] items-center bg-slate-950 text-white">
+        <h2 className="text-7xl font-black">
+          LEARN{" "}
+          <TypeWriter
+            words={[
+              { word: "PROGRAMMING", className: "text-green-400" },
+              { word: "PCB DESIGN", className: "text-sky-400" },
+              { word: "3D MODELLING", className: "text-purple-500" },
+              { word: "ELECTRONICS", className: "text-yellow-300" },
+            ]}
+          />
+        </h2>
+      </section>
     </div>
   );
 }

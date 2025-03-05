@@ -6,7 +6,7 @@ import { Roboto } from "next/font/google";
 import { ClientProvider } from "@/components/client-provider";
 
 const roboto = Roboto({
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-roboto",

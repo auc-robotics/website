@@ -29,7 +29,7 @@ export default function Avatar({
         </div>
       </div>
 
-      <p className="w-80 text-lg">{description}</p>
+      <p className="w-80 text-lg font-medium">{description}</p>
     </div>
   );
 }

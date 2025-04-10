@@ -1,8 +1,8 @@
-import TypeWriter from "@/components/typewriter";
+import Typewriter from "@/components/Typewriter";
 
 export default function Home() {
   return (
-    <div className="*:px-32 *:py-6">
+    <div className="*:px-8 *:py-6 md:*:px-32">
       <section className="flex flex-col items-center justify-around gap-8 md:h-[80svh] md:flex-row">
         <h2 className="font-display text-secondary animate-in fade-in slide-in-from-top-4 text-7xl leading-[0.85] transition-none duration-500 md:text-8xl">
           UNLEASH THE LIMITLESS POSSIBILITIES OF{" "}
@@ -13,10 +13,10 @@ export default function Home() {
           CAROUSEL PLACEHOLDER
         </div>
       </section>
-      <section className="flex h-[80svh] items-center bg-slate-950 text-white">
-        <h2 className="text-7xl font-black">
+      <section className="relative flex h-[80svh] bg-slate-950 text-white">
+        <h2 className="mt-32 text-3xl font-black md:text-7xl">
           LEARN{" "}
-          <TypeWriter
+          <Typewriter
             words={[
               { word: "PROGRAMMING", className: "text-green-400" },
               { word: "PCB DESIGN", className: "text-sky-400" },

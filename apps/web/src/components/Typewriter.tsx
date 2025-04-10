@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function TypeWriter({
+export default function Typewriter({
   words,
 }: {
   words: { word: string; className: string }[];

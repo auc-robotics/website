@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Link from "@/components/link";
+import Link from "@/components/Link";
 import NextLink from "next/link";
 import Logo from "@/../public/logo.svg";
 import { Heading, DialogTrigger, Dialog, Button } from "react-aria-components";
 import { MenuIcon, XIcon } from "lucide-react";
-import { ModalOverlay } from "@/components/modal";
-import SidebarModal from "@/components/sidebar";
-import LoginButton from "./loginButton";
+import { ModalOverlay } from "@/components/Modal";
+import SidebarModal from "@/components/Sidebar";
+import LoginButton from "@/components/LoginButton";
 
 const NavItems = () => (
   <>
@@ -75,8 +75,10 @@ export default function Header() {
             <NavItems />
           </ul>
         </div>
-        <LoginButton />
       </nav>
+      <div className="ml-auto">
+        <LoginButton />
+      </div>
     </div>
   );
 }

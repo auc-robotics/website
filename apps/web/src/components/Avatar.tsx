@@ -13,7 +13,7 @@ export default function Avatar({
   description: string;
 }) {
   return (
-    <div className="text-secondary flex w-auto flex-col items-center gap-4 rounded-xl bg-slate-200 p-2">
+    <div className="text-secondary flex w-auto flex-col items-center gap-4 rounded-xl bg-slate-200 p-4">
       <div className="flex flex-col items-center">
         <Image
           src={src}

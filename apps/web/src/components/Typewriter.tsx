@@ -12,7 +12,7 @@ export default function Typewriter({
   const [stage, setStage] = useState(0);
   useEffect(() => {
     let id: NodeJS.Timeout;
-    const nextSkill = () => {
+    const cycleWord = () => {
       if (stage === 0) {
         setChar((c) => c + 1);
         if (char >= words[word].word.length) {
@@ -28,9 +28,9 @@ export default function Typewriter({
         }
       }
 
-      id = setTimeout(nextSkill, stage === 1 ? 1000 : 80);
+      id = setTimeout(cycleWord, stage === 1 ? 1000 : 80);
     };
-    id = setTimeout(nextSkill, stage === 1 ? 1000 : 80);
+    id = setTimeout(cycleWord, stage === 1 ? 1000 : 80);
     return () => clearTimeout(id);
   }, [words, char, stage, word]);
   return (

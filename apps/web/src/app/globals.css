@@ -33,7 +33,7 @@
   --font-sans: var(--font-roboto), sans-serif;
   --font-display: var(--font-bourgeois-rounded), sans-serif;
 
-  --animate-infinite-slide: infinite-slide 20s linear infinite;
+  --animate-infinite-slide: infinite-slide 30s linear infinite;
 
   @keyframes infinite-slide {
     0% {

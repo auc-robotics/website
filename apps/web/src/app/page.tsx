@@ -15,8 +15,8 @@ export default function Home() {
         </div>
       </section>
       <section className="relative flex flex-col bg-slate-950 text-white">
-        <h2 className="mt-32 mb-4 text-3xl font-black md:text-7xl">
-          LEARN{" "}
+        <h2 className="mt-16 mb-4 text-4xl font-black md:mt-32 lg:text-7xl">
+          LEARN <br className="md:hidden" />
           <Typewriter
             words={[
               { word: "PROGRAMMING", className: "text-green-400" },
@@ -25,6 +25,7 @@ export default function Home() {
               { word: "ELECTRONICS", className: "text-yellow-300" },
             ]}
           />
+          &nbsp;
         </h2>
         <p className="mb-16 text-xl">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere

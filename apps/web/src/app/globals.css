@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin "tailwindcss-react-aria-components";
+/* @plugin "tailwindcss-react-aria-components"; */
 @plugin "tailwindcss-animate";
 
 @theme {
@@ -32,4 +32,16 @@
 
   --font-sans: var(--font-roboto), sans-serif;
   --font-display: var(--font-bourgeois-rounded), sans-serif;
+
+  --animate-infinite-slide: infinite-slide 20s linear infinite;
+
+  @keyframes infinite-slide {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 }

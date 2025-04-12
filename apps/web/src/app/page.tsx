@@ -1,3 +1,4 @@
+import Carousel from "@/components/Carousel";
 import Typewriter from "@/components/Typewriter";
 
 export default function Home() {
@@ -13,8 +14,8 @@ export default function Home() {
           CAROUSEL PLACEHOLDER
         </div>
       </section>
-      <section className="relative flex h-[80svh] bg-slate-950 text-white">
-        <h2 className="mt-32 text-3xl font-black md:text-7xl">
+      <section className="relative flex flex-col bg-slate-950 text-white">
+        <h2 className="mt-32 mb-4 text-3xl font-black md:text-7xl">
           LEARN{" "}
           <Typewriter
             words={[
@@ -25,6 +26,21 @@ export default function Home() {
             ]}
           />
         </h2>
+        <p className="mb-16 text-xl">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere
+          facilis et corrupti, blanditiis deleniti impedit quam debitis cum
+          eaque amet, nulla, illo esse natus asperiores doloremque commodi
+          voluptatibus voluptatum? Qui.
+        </p>
+        <div className="-mx-8 md:-mx-32">
+          <Carousel>
+            <div className="h-50 w-80 rounded-md bg-red-300"></div>
+            <div className="h-50 w-80 rounded-md bg-blue-300"></div>
+            <div className="h-50 w-80 rounded-md bg-yellow-200"></div>
+            <div className="h-50 w-80 rounded-md bg-green-300"></div>
+            <div className="h-50 w-80 rounded-md bg-purple-300"></div>
+          </Carousel>
+        </div>
       </section>
     </div>
   );

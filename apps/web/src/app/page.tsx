@@ -1,4 +1,5 @@
 import Carousel from "@/components/Carousel";
+import MailchimpForm from "@/components/MailchimpForm";
 import Typewriter from "@/components/Typewriter";
 
 export default function Home() {
@@ -42,6 +43,15 @@ export default function Home() {
             <div className="h-50 w-80 rounded-md bg-purple-300"></div>
           </Carousel>
         </div>
+      </section>
+      <section className="flex flex-col gap-4 bg-slate-800 text-white">
+        <h2 className="text-center text-5xl font-bold">
+          Sign up for our newsletter!
+        </h2>
+        <p className="text-center text-lg">
+          Get the latest robotics news delivered straight to your inbox.
+        </p>
+        <MailchimpForm />
       </section>
     </div>
   );

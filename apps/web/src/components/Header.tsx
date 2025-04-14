@@ -19,7 +19,7 @@ const NavItems = () => (
       <Link href="#">Events</Link>
     </li>
     <li>
-      <Link href="#">Articles</Link>
+      <Link href="/library">Articles</Link>
     </li>
   </>
 );

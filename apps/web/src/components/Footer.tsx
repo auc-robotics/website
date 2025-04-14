@@ -5,46 +5,73 @@ import {
   SiInstagram,
   SiFacebookHex,
   SiInstagramHex,
+  SiYoutube,
+  SiYoutubeHex,
 } from "@icons-pack/react-simple-icons";
 import { Mail } from "lucide-react";
 import Link from "next/link";
 
-export default function Footer() {
+function NavLink({
+  href,
+  children,
+  color,
+}: {
+  href: string;
+  children: React.ReactNode;
+  color: string;
+}) {
   return (
-    <div className="flex flex-col gap-8 border-t border-t-slate-600 bg-slate-950 px-8 py-4 text-white md:px-32">
+    <Link
+      href={href}
+      target="_blank"
+      className="flex gap-2 transition hover:text-[color:var(--color-hover)]"
+      style={{ "--color-hover": color } as React.CSSProperties}
+    >
+      {children}
+    </Link>
+  );
+}
+
+export default function Footer() {
+  const primaryColor = getComputedStyle(
+    document.documentElement,
+  ).getPropertyValue("--color-primary");
+  return (
+    <div className="flex flex-col gap-4 border-t border-t-slate-600 bg-slate-950 px-8 py-4 text-white md:px-32">
       <nav>
-        <ul className="flex gap-4 max-md:flex-col md:justify-center">
+        <ul className="grid grid-cols-2 justify-between gap-4 md:flex md:flex-wrap">
           <li>
-            <Link
+            <NavLink
               href="https://www.facebook.com/AUCRoboticsClub/"
-              target="_blank"
-              className="flex gap-2 transition hover:text-[color:var(--color-hover)]"
-              style={{ "--color-hover": SiFacebookHex } as React.CSSProperties}
+              color={SiFacebookHex}
             >
               <SiFacebook />
               <span>AUCRoboticsClub</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               href="https://www.instagram.com/robotics_auc/"
-              target="_blank"
-              className="flex gap-2 transition hover:text-[color:var(--color-hover)]"
-              style={{ "--color-hover": SiInstagramHex } as React.CSSProperties}
+              color={SiInstagramHex}
             >
               <SiInstagram />
               <span>robotics_auc</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
-              href="mailto:robotics@aucegypt.edu"
-              target="_blank"
-              className="hover:text-primary flex gap-2 transition"
+            <NavLink
+              href="https://www.youtube.com/@aucrobotics"
+              color={SiYoutubeHex}
             >
+              <SiYoutube />
+              <span>aucrobotics</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink href="mailto:robotics@aucegypt.edu" color={primaryColor}>
               <Mail />
               <span>robotics@aucegypt.edu</span>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

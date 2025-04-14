@@ -90,7 +90,7 @@ export default function MailchimpForm() {
       })}
     >
       <div className="flex flex-col items-center">
-        <div className="grid w-96 grid-cols-2 gap-2">
+        <div className="grid w-full grid-cols-2 gap-2 md:w-96">
           <div className="col-span-2">
             <MyTextField
               control={control}
@@ -114,7 +114,7 @@ export default function MailchimpForm() {
               type="submit"
               name="subscribe"
               value="Subscribe"
-              className="col-span-2 cursor-pointer rounded-full bg-slate-100 px-8 py-2 font-bold text-slate-800 hover:bg-slate-300"
+              className="col-span-2 cursor-pointer rounded-full bg-white px-8 py-2 font-bold text-slate-800 hover:bg-slate-200"
             >
               SUBSCRIBE
             </Button>

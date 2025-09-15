@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Link from "@/components/link";
+import Link from "@/components/Link";
 import NextLink from "next/link";
 import Logo from "@/../public/logo.svg";
 import { Heading, DialogTrigger, Dialog, Button } from "react-aria-components";
 import { MenuIcon, XIcon } from "lucide-react";
-import { ModalOverlay } from "@/components/modal";
-import SidebarModal from "@/components/sidebar";
+import { ModalOverlay } from "@/components/Modal";
+import SidebarModal from "@/components/Sidebar";
+import LoginButton from "@/components/LoginButton";
 
 const NavItems = () => (
   <>
@@ -18,7 +19,7 @@ const NavItems = () => (
       <Link href="#">Events</Link>
     </li>
     <li>
-      <Link href="#">Articles</Link>
+      <Link href="/library">Articles</Link>
     </li>
   </>
 );
@@ -68,13 +69,16 @@ export default function Header() {
           AUC ROBOTICS
         </Heading>
       </NextLink>
-      <nav className="text-xl">
+      <nav className="flex items-center gap-4 text-xl">
         <div className="max-sm:hidden">
           <ul className="flex gap-8">
             <NavItems />
           </ul>
         </div>
       </nav>
+      <div className="ml-auto">
+        <LoginButton />
+      </div>
     </div>
   );
 }

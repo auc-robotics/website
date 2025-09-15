@@ -1,12 +1,13 @@
 import "./globals.css";
-import Header from "@/components/header";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Roboto } from "next/font/google";
-import { ClientProvider } from "@/components/client-provider";
+import { ClientProvider } from "@/components/ClientProvider";
 
 const roboto = Roboto({
-  weight: ["400", "700"],
+  weight: ["400", "500", "700", "900"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-roboto",
@@ -33,12 +34,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth antialiased ${roboto.variable} ${bourgeouisRounded.variable}`}
+      className={`antialiased ${roboto.variable} ${bourgeouisRounded.variable}`}
     >
       <body className="bg-slate-50">
         <ClientProvider>
           <Header />
           <div>{children}</div>
+          <Footer />
         </ClientProvider>
       </body>
     </html>

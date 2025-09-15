@@ -1,5 +1,6 @@
 "use client";
 
+import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { RouterProvider } from "react-aria-components";
 
@@ -13,5 +14,9 @@ declare module "react-aria-components" {
 
 export function ClientProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  return <RouterProvider navigate={router.push}>{children}</RouterProvider>;
+  return (
+    <SessionProvider>
+      <RouterProvider navigate={router.push}>{children}</RouterProvider>
+    </SessionProvider>
+  );
 }

@@ -1,7 +1,14 @@
 import { useEffect, useRef } from "react";
-export * from "../canvasObject";
+export * from "@/lib/canvasObjects";
 
-class CanvasCtx {
+export type Point = [number, number];
+
+export interface CanvasObject {
+  draw(canvas: CanvasCtx): void;
+  animate(canvas: CanvasCtx, dt: number): void;
+}
+
+export class CanvasCtx {
   ctx: CanvasRenderingContext2D;
   ox: number;
   oy: number;
@@ -90,7 +97,7 @@ export default function Canvas({
   oy?: number;
   width?: number;
   height?: number;
-  ref?: React.Ref<CanvasCtx>;
+  ref?: React.RefObject<CanvasCtx | null>;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasCtx | null>(null);
@@ -111,14 +118,14 @@ export default function Canvas({
     return () => {
       c.stopAnimate();
     };
-  }, []);
+  }, []); /// eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     const c = ctxRef.current;
-    if (c) {
-      c.width = width;
-      c.height = height;
-      c.updateSize();
-    }
+    if (!c) return;
+    c.width = width || 1;
+    c.height = height || 1;
+    c.updateSize();
   }, [width, height]);
 
   return (

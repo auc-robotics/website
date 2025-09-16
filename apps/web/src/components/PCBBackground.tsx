@@ -1,6 +1,6 @@
 "use client";
 
-import Canvas, { Line } from "@/components/Canvas";
+import Canvas, { CanvasCtx, Line } from "@/components/Canvas";
 import { useState, useRef, useEffect } from "react";
 import { generatePCBDesign } from "@/lib/genPCB";
 

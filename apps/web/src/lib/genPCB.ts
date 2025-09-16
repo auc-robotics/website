@@ -22,9 +22,9 @@ export const generatePCBDesign = (width: number, height: number) => {
     return !grid[y][x];
   };
   const doesCrossover = (point: Point, dir: Point) => {
-    let [x, y] = point;
-    let [dx, dy] = dir;
-    let s = Math.abs(dx) + Math.abs(dy);
+    const [x, y] = point;
+    const [dx, dy] = dir;
+    const s = Math.abs(dx) + Math.abs(dy);
     if (s != 2) return false;
     return grid[y + dy][x] && grid[y][x + dx];
   };
@@ -49,25 +49,25 @@ export const generatePCBDesign = (width: number, height: number) => {
   const maxLength = 12;
   const straightness = 5;
   const generateWire = (start: Point) => {
-    let points = [start];
+    const points = [start];
     let dir = findOpenDir(start);
     if (dir == -1) return points;
 
     while (points.length < maxLength) {
-      let [px, py] = points[points.length - 1];
+      const [px, py] = points[points.length - 1];
       // 1 and 7 should have the same probability
-      let ddirs = Math.random() < 0.5 ? [0, 1, 7] : [0, 7, 1];
+      const ddirs = Math.random() < 0.5 ? [0, 1, 7] : [0, 7, 1];
 
       let found = false;
       while (ddirs.length > 0) {
-        let di = Math.floor(
+        const di = Math.floor(
           Math.pow(Math.random(), straightness) * ddirs.length,
         );
-        let ddir = ddirs.splice(di, 1)[0];
+        const ddir = ddirs.splice(di, 1)[0];
 
         dir = (dir + ddir) % 8;
-        let [dx, dy] = DIRS[dir];
-        let [nx, ny] = [px + dx, py + dy];
+        const [dx, dy] = DIRS[dir];
+        const [nx, ny] = [px + dx, py + dy];
         if (!isValid([nx, ny])) continue;
         if (doesCrossover([px, py], [dx, dy])) continue;
 

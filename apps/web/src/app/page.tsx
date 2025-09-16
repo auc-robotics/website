@@ -7,10 +7,10 @@ export default function Home() {
   return (
     <div className="*:px-8 *:py-6 md:*:px-32">
       <section className="relative md:h-[80svh]">
-        <div className="absolute inset-0 -z-20 opacity-50">
+        <div className="absolute inset-0 -z-10 opacity-50">
           <PCBBackground />
         </div>
-        <div className="z-10 flex h-full flex-col items-center justify-around gap-8 md:flex-row">
+        <div className="flex h-full flex-col items-center justify-around gap-8 md:flex-row">
           <h2 className="font-display text-secondary animate-in fade-in slide-in-from-top-4 text-7xl leading-[0.85] transition-none duration-500 md:text-8xl">
             UNLEASH THE LIMITLESS POSSIBILITIES OF{" "}
             <span className="text-primary">ROBOTICS</span>

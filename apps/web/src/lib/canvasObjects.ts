@@ -1,11 +1,5 @@
+import { CanvasCtx, CanvasObject, type Point } from "@/components/Canvas";
 import { clamp, resolveColor } from "@/lib/util";
-
-export type Point = [number, number];
-
-export interface CanvasObject {
-  draw(canvas: CanvasCtx): void;
-  animate(canvas: CanvasCtx, dt: number): void;
-}
 
 export interface Gradient {
   start: number;

@@ -13,3 +13,12 @@ export const transparent = (color: string, alpha = 0) =>
 
 export const clamp = (n: number, min: number, max: number) =>
   Math.min(max, Math.max(min, n));
+
+export const shuffled = <T>(arr: T[]): T[] => {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+};

@@ -1,4 +1,4 @@
-import { useEffect, useRef, memo } from "react";
+import { useEffect, useRef } from "react";
 export * from "../canvasObject";
 
 class CanvasCtx {
@@ -43,7 +43,7 @@ class CanvasCtx {
     this.ctx.canvas.width = cw;
     this.ctx.canvas.height = ch;
     if (this.preserveAspectRatio) {
-      const unit = Math.min(cw / this.width, ch / this.height);
+      const unit = Math.max(cw / this.width, ch / this.height);
       this.width = cw / unit;
       this.height = ch / unit;
     }
@@ -51,8 +51,8 @@ class CanvasCtx {
 
   toCoords(x: number, y: number): Point {
     return [
-      (x / this.width) * this.ctx.canvas.width + this.ox,
-      (y / this.height) * this.ctx.canvas.height + this.oy,
+      ((x + this.ox) / this.width) * this.ctx.canvas.width,
+      ((y + this.oy) / this.height) * this.ctx.canvas.height,
     ];
   }
   toPixelPerfectCoords(x: number, y: number): Point {
@@ -77,48 +77,53 @@ class CanvasCtx {
   }
 }
 
-export default memo(
-  function Canvas({
-    children,
-    ox,
-    oy,
-    width,
-    height,
-    ref,
-  }: {
-    children: (ctx: CanvasCtx) => void;
-    ox?: number;
-    oy?: number;
-    width?: number;
-    height?: number;
-    ref?: React.Ref<CanvasCtx>;
-  }) {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const ctxRef = useRef<CanvasCtx | null>(null);
-    console.log("Canvas render");
+export default function Canvas({
+  children,
+  ox,
+  oy,
+  width,
+  height,
+  ref,
+}: {
+  children?: (ctx: CanvasCtx) => void;
+  ox?: number;
+  oy?: number;
+  width?: number;
+  height?: number;
+  ref?: React.Ref<CanvasCtx>;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const ctxRef = useRef<CanvasCtx | null>(null);
 
-    useEffect(() => {
-      const ctx = new CanvasCtx(canvasRef.current!, {
-        ox,
-        oy,
-        width,
-        height,
-        preserveAspectRatio: true,
-      });
-      if (ref) ref.current = ctx;
-      children(ctx);
-      requestAnimationFrame(ctx.animate.bind(ctx));
-
-      return () => {
-        ctx.stopAnimate();
-      };
+  useEffect(() => {
+    ctxRef.current = new CanvasCtx(canvasRef.current!, {
+      ox,
+      oy,
+      width,
+      height,
+      preserveAspectRatio: true,
     });
+    const c = ctxRef.current;
+    if (ref) ref.current = c;
+    if (children) children(c);
+    requestAnimationFrame(c.animate.bind(c));
 
-    return (
-      <div className="size-full">
-        <canvas ref={canvasRef}></canvas>
-      </div>
-    );
-  },
-  () => true,
-);
+    return () => {
+      c.stopAnimate();
+    };
+  }, []);
+  useEffect(() => {
+    const c = ctxRef.current;
+    if (c) {
+      c.width = width;
+      c.height = height;
+      c.updateSize();
+    }
+  }, [width, height]);
+
+  return (
+    <div className="size-full">
+      <canvas ref={canvasRef}></canvas>
+    </div>
+  );
+}

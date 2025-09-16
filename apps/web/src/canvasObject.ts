@@ -1,4 +1,5 @@
-import { clamp, resolveColor } from "@/util";
+import { clamp, resolveColor } from "@/lib/util";
+
 export type Point = [number, number];
 
 export interface CanvasObject {
@@ -62,18 +63,27 @@ export class Line implements CanvasObject {
     const c = canvas.ctx;
     c.lineWidth = this.lineWidth;
     c.strokeStyle = this.strokeStyle;
+    c.fillStyle = this.strokeStyle;
     c.lineCap = "round";
     c.lineJoin = "round";
 
-    for (let i = 1; i < this.points.length; i++) {
-      const [x1, y1] = this.points[i - 1];
-      const [x2, y2] = this.points[i];
+    c.beginPath();
+    const [sx, sy] = canvas.toPixelPerfectCoords(...this.points[0]);
+    const [ex, ey] = canvas.toPixelPerfectCoords(
+      ...this.points[this.points.length - 1],
+    );
+    c.arc(sx, sy, (this.lineWidth * 4) / 3, 0, Math.PI * 2);
+    c.arc(ex, ey, (this.lineWidth * 4) / 3, 0, Math.PI * 2);
+    c.fill();
+    c.closePath();
 
-      c.beginPath();
-      c.moveTo(...canvas.toPixelPerfectCoords(x1, y1));
-      c.lineTo(...canvas.toPixelPerfectCoords(x2, y2));
-      c.stroke();
+    c.beginPath();
+    c.moveTo(sx, sy);
+    for (let i = 1; i < this.points.length; i++) {
+      c.lineTo(...canvas.toPixelPerfectCoords(...this.points[i]));
     }
+    c.stroke();
+    c.closePath();
 
     for (const { start, end, stops } of this.grads) {
       const [gs, ge] = [start, end];
@@ -110,6 +120,7 @@ export class Line implements CanvasObject {
           c.lineTo(gx2, gy2);
           c.stroke();
         }
+        c.closePath();
 
         currentLength += segmentLength;
       }

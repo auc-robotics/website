@@ -1,86 +1,22 @@
-"use client"; // HACK: remove
-
 import Carousel from "@/components/Carousel";
 import MailchimpForm from "@/components/MailchimpForm";
 import Typewriter from "@/components/Typewriter";
-import Canvas, { Line } from "@/components/Canvas";
-import { useState, useRef } from "react";
+import PCBBackground from "@/components/PCBBackground";
 
 export default function Home() {
-  const ctxRef = useRef<CanvasCtx | null>(null);
-
-  const translateGradients = (line: Line, dt: number) => {
-    const speed = 0.006;
-    for (let i = 0; i < line.grads.length; i++) {
-      const grad = line.grads[i];
-      grad.start += speed * dt;
-      grad.end += speed * dt;
-      if (grad.start > line.totalLength()) {
-        line.grads.splice(i, 1);
-        // const l = grad.end - grad.start;
-        // grad.end = 0;
-        // grad.start = -l;
-      }
-    }
-  };
-
   return (
     <div className="*:px-8 *:py-6 md:*:px-32">
       <section className="relative md:h-[80svh]">
-        <div
-          className="absolute inset-0 z-10 bg-red-600/20"
-          onClick={(e) => {
-            const line = ctxRef.current!.objects[0] as Line;
-            line.grads.push({
-              start: 0,
-              end: 0.5,
-              stops: [
-                [0, "red"],
-                [1, "red"],
-              ],
-            });
-          }}
-        >
-          <Canvas ox={0} oy={0} width={20} ref={ctxRef}>
-            {(ctx) => {
-              const line1 = new Line({
-                lineWidth: 6,
-                points: [
-                  [1, 1],
-                  [3, 3],
-                  [10, 3],
-                ],
-                gradients: [
-                  {
-                    start: 1,
-                    end: 2,
-                    stops: [
-                      [0, "red"],
-                      [1, "red"],
-                    ],
-                  },
-                  {
-                    start: 4,
-                    end: 5,
-                    stops: [
-                      [0, "blue"],
-                      [1, "blue"],
-                    ],
-                  },
-                ],
-                update: translateGradients,
-              });
-              ctx.add(line1);
-            }}
-          </Canvas>
+        <div className="absolute inset-0 -z-20 opacity-50">
+          <PCBBackground />
         </div>
-        <div className="relative flex h-full flex-col items-center justify-around gap-8 md:flex-row">
+        <div className="z-10 flex h-full flex-col items-center justify-around gap-8 md:flex-row">
           <h2 className="font-display text-secondary animate-in fade-in slide-in-from-top-4 text-7xl leading-[0.85] transition-none duration-500 md:text-8xl">
             UNLEASH THE LIMITLESS POSSIBILITIES OF{" "}
             <span className="text-primary">ROBOTICS</span>
           </h2>
 
-          <div className="flex aspect-square max-h-full min-w-80 flex-1 items-center justify-center rounded-md bg-neutral-500/10 font-bold text-white">
+          <div className="flex aspect-square max-h-full min-w-80 flex-1 items-center justify-center rounded-md bg-neutral-500 font-bold text-white">
             CAROUSEL PLACEHOLDER
           </div>
         </div>

@@ -10,6 +10,8 @@ import {
 } from "@icons-pack/react-simple-icons";
 import { Mail } from "lucide-react";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { resolveColor } from "@/lib/util";
 
 function NavLink({
   href,
@@ -20,12 +22,20 @@ function NavLink({
   children: React.ReactNode;
   color: string;
 }) {
+  const [resColor, setResColor] = useState(color);
+  useEffect(() => {
+    setResColor(resolveColor(color));
+  }, [color]);
   return (
     <Link
       href={href}
       target="_blank"
       className="flex gap-2 transition hover:text-[color:var(--color-hover)]"
-      style={{ "--color-hover": color } as React.CSSProperties}
+      style={
+        {
+          "--color-hover": resColor,
+        } as React.CSSProperties
+      }
     >
       {children}
     </Link>
@@ -33,9 +43,6 @@ function NavLink({
 }
 
 export default function Footer() {
-  const primaryColor = getComputedStyle(
-    document.documentElement,
-  ).getPropertyValue("--color-primary");
   return (
     <div className="flex flex-col gap-4 border-t border-t-slate-600 bg-slate-950 px-8 py-4 text-white md:px-32">
       <nav>
@@ -68,7 +75,10 @@ export default function Footer() {
             </NavLink>
           </li>
           <li>
-            <NavLink href="mailto:robotics@aucegypt.edu" color={primaryColor}>
+            <NavLink
+              href="mailto:robotics@aucegypt.edu"
+              color="--color-primary"
+            >
               <Mail />
               <span>robotics@aucegypt.edu</span>
             </NavLink>

@@ -8,7 +8,7 @@ import { Heading, DialogTrigger, Dialog, Button } from "react-aria-components";
 import { MenuIcon, XIcon } from "lucide-react";
 import { ModalOverlay } from "@/components/Modal";
 import SidebarModal from "@/components/Sidebar";
-import LoginButton from "@/components/LoginButton";
+// import LoginButton from "@/components/LoginButton";
 
 const NavItems = () => (
   <>
@@ -18,9 +18,9 @@ const NavItems = () => (
     <li>
       <Link href="#">Events</Link>
     </li>
-    <li>
+    {/*<li>
       <Link href="/library">Articles</Link>
-    </li>
+    </li>*/}
   </>
 );
 
@@ -76,9 +76,9 @@ export default function Header() {
           </ul>
         </div>
       </nav>
-      <div className="ml-auto">
+      {/*<div className="ml-auto">
         <LoginButton />
-      </div>
+      </div>*/}
     </div>
   );
 }

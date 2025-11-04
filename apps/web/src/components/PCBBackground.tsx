@@ -19,14 +19,14 @@ const translateGradients = (line: Line, dt: number) => {
 export default function PCBBackground() {
   const divRef = useRef<HTMLDivElement>(null);
   const ctxRef = useRef<CanvasCtx | null>(null);
-  const firstResize = useRef<bool>(true);
+  const firstResize = useRef<boolean>(true);
 
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    let debounceTimer;
-    let interval;
+    let debounceTimer: number;
+    let interval: number;
     const render = () => {
       const cellSize = 32;
       const div = divRef.current!;
@@ -50,7 +50,7 @@ export default function PCBBackground() {
         );
       }
 
-      interval = setInterval(() => {
+      interval = window.setInterval(() => {
         const c = ctxRef.current!;
         const l = c.objects.length;
         if (l == 0) return;
@@ -69,9 +69,9 @@ export default function PCBBackground() {
     };
 
     render();
-    const observer = new ResizeObserver((entries) => {
+    const observer = new ResizeObserver(() => {
       clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => {
+      debounceTimer = window.setTimeout(() => {
         if (firstResize.current) {
           firstResize.current = false;
           return;
@@ -80,7 +80,7 @@ export default function PCBBackground() {
         render();
       }, 300);
     });
-    observer.observe(divRef.current);
+    observer.observe(divRef.current!);
     return () => {
       observer.disconnect();
       clearTimeout(debounceTimer);

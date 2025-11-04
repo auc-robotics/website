@@ -5,7 +5,7 @@ import {
   Form,
   Input,
   Label,
-  TextField,
+  TextField as RacTextField,
   TextFieldProps,
 } from "react-aria-components";
 import {
@@ -17,7 +17,7 @@ import {
   RegisterOptions,
 } from "react-hook-form";
 
-function MyTextField<T extends FieldValues>({
+function TextField<T extends FieldValues>({
   control,
   name,
   label,
@@ -39,7 +39,7 @@ function MyTextField<T extends FieldValues>({
         field: { name, value, onChange, onBlur, ref },
         fieldState: { invalid, error },
       }) => (
-        <TextField
+        <RacTextField
           name={name}
           value={value}
           onChange={onChange}
@@ -58,7 +58,7 @@ function MyTextField<T extends FieldValues>({
             />
             <span className="text-sm text-red-500">{error?.message}&nbsp;</span>
           </div>
-        </TextField>
+        </RacTextField>
       )}
     />
   );
@@ -92,7 +92,7 @@ export default function MailchimpForm() {
       <div className="flex flex-col items-center">
         <div className="grid w-full grid-cols-2 gap-2 md:w-96">
           <div className="col-span-2">
-            <MyTextField
+            <TextField
               control={control}
               isRequired
               rules={{
@@ -107,14 +107,14 @@ export default function MailchimpForm() {
               label="Email"
             />
           </div>
-          <MyTextField control={control} name="FNAME" label="First Name" />
-          <MyTextField control={control} name="LNAME" label="Last Name" />
+          <TextField control={control} name="FNAME" label="First Name" />
+          <TextField control={control} name="LNAME" label="Last Name" />
           <div className="col-span-2 flex justify-center">
             <Button
               type="submit"
               name="subscribe"
               value="Subscribe"
-              className="col-span-2 cursor-pointer rounded-full bg-white px-8 py-2 font-bold text-slate-800 hover:bg-slate-200"
+              className="col-span-2 cursor-pointer rounded-lg bg-white px-8 py-2 font-bold text-slate-800 hover:bg-slate-200"
             >
               SUBSCRIBE
             </Button>

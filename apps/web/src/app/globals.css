@@ -27,13 +27,13 @@
   --color-slate-900: #040b14;
   --color-slate-950: #020812;
 
-  --color-primary: var(--color-sky-700);
+  --color-primary: var(--color-sky-600);
   --color-secondary: #001c49;
 
   --font-sans: var(--font-roboto), sans-serif;
   --font-display: var(--font-bourgeois-rounded), sans-serif;
 
-  --animate-infinite-slide: infinite-slide 30s linear infinite;
+  --animate-infinite-slide: infinite-slide 60s linear infinite;
 
   @keyframes infinite-slide {
     0% {

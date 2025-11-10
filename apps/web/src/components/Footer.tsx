@@ -44,7 +44,7 @@ function NavLink({
 
 export default function Footer() {
   return (
-    <div className="flex flex-col gap-4 border-t border-t-slate-600 bg-slate-950 px-8 py-4 text-white md:px-32">
+    <div className="flex flex-col gap-4 border-t border-t-slate-600 bg-slate-950 px-8 py-4 text-slate-50 md:px-32">
       <nav>
         <ul className="grid grid-cols-2 justify-between gap-4 md:flex md:flex-wrap">
           <li>

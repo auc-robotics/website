@@ -1,28 +1,11 @@
 import Carousel from "@/components/Carousel";
-import CTAButton from "@/components/CTAButton";
+import Link from "@/components/Link";
 import MailchimpForm from "@/components/MailchimpForm";
 import PCBBackground from "@/components/PCBBackground";
 import Typewriter from "@/components/Typewriter";
 import Image from "next/image";
+import Card from "@/components/Card";
 import { Zap, Trophy, FlaskConical, type LucideIcon } from "lucide-react";
-
-function FeatureCard({
-  title,
-  icon: Icon,
-  children,
-}: {
-  title: string;
-  icon: LucideIcon;
-  children: string;
-}) {
-  return (
-    <div className="flex w-full flex-col rounded-xl border border-slate-200 bg-slate-50 p-8">
-      <Icon size={32} className="mb-8" />
-      <h3 className="mb-4 text-2xl font-bold">{title}</h3>
-      <p>{children}</p>
-    </div>
-  );
-}
 
 export default function Home() {
   return (
@@ -43,31 +26,54 @@ export default function Home() {
             vibrant community.
           </p>
           <div>
-            <CTAButton>GET INVOLVED</CTAButton>
+            <Link
+              href="/get-involved"
+              className="text-secondary font-display bg-primary cursor-pointer rounded-lg px-4 py-3 pt-1 text-4xl font-bold text-slate-50! transition hover:brightness-120"
+            >
+              GET INVOLVED
+            </Link>
           </div>
         </div>
       </section>
-      <section className="text-secondary relative flex flex-col bg-slate-100">
+      <section className="text-secondary relative flex flex-col border-t border-t-slate-400 bg-slate-100">
         <h2 className="mt-16 mb-8 text-center text-5xl font-bold md:mt-24 lg:text-7xl">
           WHAT WE DO
         </h2>
         <div className="flex flex-col gap-8 lg:flex-row">
-          <FeatureCard title={"Workshops & Training"} icon={Zap}>
-            From line-following robots to fully autonomous vehicles, we run
-            hands-on workshops that help students of all levels learn and apply
-            robotics skills.
-          </FeatureCard>
-          <FeatureCard title={"Research & Innovation"} icon={FlaskConical}>
-            Our research and development members collaborate on cutting-edge
-            projects that push the boundaries of robotics and technology.
-          </FeatureCard>
-          <FeatureCard title={"Competitions"} icon={Trophy}>
-            We represent AUC in national and international competitions,
-            designing, building, and showcasing our robotics solutions.
-          </FeatureCard>
+          <Card delay="0ms">
+            <div className="flex flex-col p-8">
+              <Zap size={32} className="mb-8" />
+              <h3 className="mb-4 text-2xl font-bold">Workshops & Training</h3>
+              <p>
+                From line-following robots to fully autonomous vehicles, we run
+                hands-on workshops that help students of all levels learn and
+                apply robotics skills.
+              </p>
+            </div>
+          </Card>
+          <Card delay="100ms">
+            <div className="flex flex-col p-8">
+              <FlaskConical size={32} className="mb-8" />
+              <h3 className="mb-4 text-2xl font-bold">Research & Innovation</h3>
+              <p>
+                Our research and development members collaborate on cutting-edge
+                projects that push the boundaries of robotics and technology.
+              </p>
+            </div>
+          </Card>
+          <Card delay="200ms">
+            <div className="flex flex-col p-8">
+              <Trophy size={32} className="mb-8" />
+              <h3 className="mb-4 text-2xl font-bold">Competitions</h3>
+              <p>
+                We represent AUC in national and international competitions,
+                designing, building, and showcasing our robotics solutions.
+              </p>
+            </div>
+          </Card>
         </div>
       </section>
-      <section className="relative flex flex-col bg-slate-950 text-white">
+      <section className="relative flex flex-col bg-slate-950 text-slate-50">
         <h2 className="mt-16 mb-8 text-5xl font-black md:mt-24 lg:text-7xl">
           LEARN <br className="md:hidden" />
           <Typewriter
@@ -130,7 +136,7 @@ export default function Home() {
           </Carousel>
         </div>
       </section>
-      <section className="flex flex-col gap-4 bg-slate-800 text-white">
+      <section className="flex flex-col gap-4 bg-slate-800 text-slate-50">
         <h2 className="text-center text-5xl font-bold">
           Sign up for our newsletter!
         </h2>

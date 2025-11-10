@@ -74,7 +74,6 @@ const teams = [
       description:
         "Abanoub manages member recruitment, engagement and teamwork, ensuring a positive and productive club environment.",
     },
-    // M. Yasser
     // Farouk
     {
       src: "/team/Maged.png",
@@ -91,7 +90,7 @@ export default function MeetTheTeam() {
     <div className="*:px-6 *:py-6 md:*:px-24 lg:*:px-32">
       <section className="flex flex-col items-center justify-around gap-8">
         <div className="text-secondary text-center">
-          <h2 className="font-display animate-in fade-in slide-in-from-top-4 text-7xl leading-[0.85] transition-none duration-500 md:text-8xl">
+          <h2 className="font-display animate-in fade-in slide-in-from-top-4 mt-16 mb-4 text-7xl leading-[0.85] transition-none duration-500 md:text-8xl">
             Meet the minds behind{" "}
             <span className="text-primary">AUC ROBOTICS</span>!
           </h2>

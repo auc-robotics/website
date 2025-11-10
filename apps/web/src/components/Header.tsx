@@ -13,20 +13,17 @@ import SidebarModal from "@/components/Sidebar";
 const NavItems = () => (
   <>
     <li>
-      <Link href="/meet-the-team">About</Link>
+      <Link href="/get-involved">Get Involved</Link>
     </li>
     <li>
-      <Link href="#">Events</Link>
+      <Link href="/meet-the-team">About</Link>
     </li>
-    {/*<li>
-      <Link href="/library">Articles</Link>
-    </li>*/}
   </>
 );
 
 export default function Header() {
   return (
-    <div className="flex h-18 items-center gap-4 border-b border-b-slate-200 px-4 sm:justify-between">
+    <div className="flex h-18 items-center gap-4 border-b border-b-slate-400 px-4 sm:justify-between">
       <div className="sm:hidden">
         <DialogTrigger>
           <Button

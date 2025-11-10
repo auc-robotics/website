@@ -36,11 +36,13 @@ export default function RootLayout({
       lang="en"
       className={`antialiased ${roboto.variable} ${bourgeouisRounded.variable}`}
     >
-      <body className="bg-slate-50">
+      <body className="bg-slate-100">
         <ClientProvider>
-          <Header />
-          <div>{children}</div>
-          <Footer />
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <div className="flex-1">{children}</div>
+            <Footer />
+          </div>
         </ClientProvider>
       </body>
     </html>

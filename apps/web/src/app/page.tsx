@@ -1,11 +1,11 @@
 import Carousel from "@/components/Carousel";
 import Link from "@/components/Link";
-import MailchimpForm from "@/components/MailchimpForm";
+// import MailchimpForm from "@/components/MailchimpForm";
 import PCBBackground from "@/components/PCBBackground";
 import Typewriter from "@/components/Typewriter";
 import Image from "next/image";
 import Card from "@/components/Card";
-import { Zap, Trophy, FlaskConical, type LucideIcon } from "lucide-react";
+import { Zap, Trophy, FlaskConical } from "lucide-react";
 
 export default function Home() {
   return (
@@ -20,7 +20,7 @@ export default function Home() {
             <span className="text-primary">ROBOTICS</span> AT AUC
           </h2>
           <p className="text-secondary max-w-[65ch] font-bold">
-            Robotics AUC is the hub for robotics innovation at the American
+            AUC Robotics is the hub for robotics innovation at the American
             University in Cairo. We inspire students to explore, create, and
             excel in robotics through hands-on projects, competitions, and a
             vibrant community.
@@ -136,15 +136,17 @@ export default function Home() {
           </Carousel>
         </div>
       </section>
-      <section className="flex flex-col gap-4 bg-slate-800 text-slate-50">
+      {/*
+        <section className="flex flex-col gap-4 bg-slate-800 text-slate-50">
         <h2 className="text-center text-5xl font-bold">
-          Sign up for our newsletter!
-        </h2>
+        Sign up for our newsletter!
+          </h2>
         <p className="text-center">
-          Get the latest robotics news delivered straight to your inbox.
-        </p>
+        Get the latest robotics news delivered straight to your inbox.
+          </p>
         <MailchimpForm />
-      </section>
+        </section>
+      */}
     </div>
   );
 }

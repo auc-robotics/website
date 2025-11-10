@@ -2,7 +2,7 @@
 import Card from "@/components/Card";
 import Link from "@/components/Link";
 import { ArrowRight, Handshake, Users } from "lucide-react";
-import { Button as RacButton, Link as RacLink } from "react-aria-components";
+import { Button as RacButton } from "react-aria-components";
 
 export default function GetInvolved() {
   return (
@@ -12,9 +12,9 @@ export default function GetInvolved() {
           Get Involved!
         </h2>
         <p className="max-w-[65ch] text-2xl">
-          Whether you're a student passionate about robotics or an organization
-          looking to support innovation, there's a way for you to support our
-          mission.
+          Whether you&apos;re a student passionate about robotics or an
+          organization looking to support innovation, there&apos;s a way for you
+          to support our mission.
         </p>
       </div>
       <div className="text-secondary mb-8 flex flex-col justify-center gap-8 md:flex-row">

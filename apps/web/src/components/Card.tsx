@@ -5,7 +5,7 @@ export default function Card({
   children,
   delay,
 }: {
-  children: string;
+  children: React.ReactNode;
   delay?: string;
 }) {
   if (!delay) delay = "0";

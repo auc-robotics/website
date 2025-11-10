@@ -7,6 +7,8 @@ import {
   SiInstagramHex,
   SiYoutube,
   SiYoutubeHex,
+  SiLinktree,
+  SiLinktreeHex,
 } from "@icons-pack/react-simple-icons";
 import { Mail } from "lucide-react";
 import Link from "next/link";
@@ -71,6 +73,12 @@ export default function Footer() {
               color={SiYoutubeHex}
             >
               <SiYoutube />
+              <span>aucrobotics</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink href="https://linktr.ee/aucrobotics" color={SiLinktreeHex}>
+              <SiLinktree />
               <span>aucrobotics</span>
             </NavLink>
           </li>

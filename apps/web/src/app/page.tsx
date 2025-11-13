@@ -4,12 +4,26 @@ import Link from "@/components/Link";
 import PCBBackground from "@/components/PCBBackground";
 import Typewriter from "@/components/Typewriter";
 import Image from "next/image";
+import SlideIn from "@/components/SlideIn";
 import Card from "@/components/Card";
+import Avatar from "@/components/Avatar";
 import { Zap, Trophy, FlaskConical } from "lucide-react";
 
+const team = [
+  {
+    src: "/team/Samar_Ahmed.jpg",
+    name: "Samar Ahmed",
+    position: "President",
+  },
+  {
+    src: "/team/Ahmed_Hammad.jpg",
+    name: "Ahmed Hammad",
+    position: "Vice President",
+  },
+];
 export default function Home() {
   return (
-    <div className="text-lg *:px-8 *:py-6 md:text-xl md:*:px-32">
+    <div className="*:px-8 *:py-6 md:text-xl md:*:px-32">
       <section className="relative h-[calc(100vh-var(--spacing)*18)]">
         <div className="absolute inset-0 -z-10 opacity-50">
           <PCBBackground />
@@ -40,37 +54,48 @@ export default function Home() {
           WHAT WE DO
         </h2>
         <div className="flex flex-col gap-8 lg:flex-row">
-          <Card delay="0ms">
-            <div className="flex flex-col p-8">
-              <Zap size={32} className="mb-8" />
-              <h3 className="mb-4 text-2xl font-bold">Workshops & Training</h3>
-              <p>
-                From line-following robots to fully autonomous vehicles, we run
-                hands-on workshops that help students of all levels learn and
-                apply robotics skills.
-              </p>
-            </div>
-          </Card>
-          <Card delay="100ms">
-            <div className="flex flex-col p-8">
-              <FlaskConical size={32} className="mb-8" />
-              <h3 className="mb-4 text-2xl font-bold">Research & Innovation</h3>
-              <p>
-                Our research and development members collaborate on cutting-edge
-                projects that push the boundaries of robotics and technology.
-              </p>
-            </div>
-          </Card>
-          <Card delay="200ms">
-            <div className="flex flex-col p-8">
-              <Trophy size={32} className="mb-8" />
-              <h3 className="mb-4 text-2xl font-bold">Competitions</h3>
-              <p>
-                We represent AUC in national and international competitions,
-                designing, building, and showcasing our robotics solutions.
-              </p>
-            </div>
-          </Card>
+          <SlideIn delay="0ms">
+            <Card>
+              <div className="flex flex-col p-8">
+                <Zap size={32} className="mb-8" />
+                <h3 className="mb-4 text-2xl font-bold">
+                  Workshops & Training
+                </h3>
+                <p>
+                  From line-following robots to fully autonomous vehicles, we
+                  run hands-on workshops that help students of all levels learn
+                  and apply robotics skills.
+                </p>
+              </div>
+            </Card>
+          </SlideIn>
+          <SlideIn delay="50ms">
+            <Card>
+              <div className="flex flex-col p-8">
+                <FlaskConical size={32} className="mb-8" />
+                <h3 className="mb-4 text-2xl font-bold">
+                  Research & Innovation
+                </h3>
+                <p>
+                  Our research and development members collaborate on
+                  cutting-edge projects that push the boundaries of robotics and
+                  technology.
+                </p>
+              </div>
+            </Card>
+          </SlideIn>
+          <SlideIn delay="100ms">
+            <Card>
+              <div className="flex flex-col p-8">
+                <Trophy size={32} className="mb-8" />
+                <h3 className="mb-4 text-2xl font-bold">Competitions</h3>
+                <p>
+                  We represent AUC in national and international competitions,
+                  designing, building, and showcasing our robotics solutions.
+                </p>
+              </div>
+            </Card>
+          </SlideIn>
         </div>
       </section>
       <section className="relative flex flex-col bg-slate-950 text-slate-50">
@@ -147,6 +172,31 @@ export default function Home() {
         <MailchimpForm />
         </section>
       */}
+      <section className="text-secondary flex flex-col items-center gap-8 bg-slate-100">
+        <h2 className="mt-16 text-center text-5xl font-bold md:mt-24 lg:text-7xl">
+          OUR TEAM
+        </h2>
+        <p className="max-w-[65ch] text-center">
+          Get to know the students behind AUC Robotics — the innovators,
+          builders, and problem solvers driving our projects forward.
+        </p>
+        <div className="flex w-full flex-wrap justify-center gap-4">
+          {team.map((member, i) => (
+            <SlideIn delay={`${50 * i}ms`} key={i}>
+              <div className="w-80">
+                <Avatar {...member} />
+              </div>
+            </SlideIn>
+          ))}
+        </div>
+
+        <Link
+          href="/team"
+          className="text-secondary font-display bg-primary cursor-pointer rounded-lg px-4 py-3 pt-1 text-4xl font-bold text-slate-50! transition hover:brightness-120"
+        >
+          MEET THE TEAM
+        </Link>
+      </section>
     </div>
   );
 }

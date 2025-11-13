@@ -1,4 +1,5 @@
 "use client";
+import SlideIn from "@/components/SlideIn";
 import Card from "@/components/Card";
 import Link from "@/components/Link";
 import { ArrowRight, Handshake, Users } from "lucide-react";
@@ -18,8 +19,8 @@ export default function GetInvolved() {
         </p>
       </div>
       <div className="text-secondary mb-8 flex flex-col justify-center gap-8 md:flex-row">
-        <Card delay="50ms">
-          <div className="flex h-full flex-col gap-2 p-8">
+        <SlideIn delay="50ms">
+          <Card className="flex h-full! flex-col gap-2 p-8">
             <Users size={32} className="mb-8" />
             <h3 className="text-2xl font-bold">Join the Club</h3>
             <p>
@@ -32,10 +33,10 @@ export default function GetInvolved() {
             <RacButton className="bg-secondary flex w-full cursor-not-allowed items-center justify-center gap-1 rounded-md p-2 font-bold text-slate-50">
               Applications Closed
             </RacButton>
-          </div>
-        </Card>
-        <Card delay="150ms">
-          <div className="flex h-full flex-col gap-2 p-8">
+          </Card>
+        </SlideIn>
+        <SlideIn delay="150ms">
+          <Card className="flex h-full! flex-col gap-2 p-8">
             <Handshake size={32} className="mb-8" />
             <h3 className="text-2xl font-bold">Partner With Us</h3>
             <p>
@@ -51,8 +52,8 @@ export default function GetInvolved() {
               Become a Sponsor
               <ArrowRight />
             </Link>
-          </div>
-        </Card>
+          </Card>
+        </SlideIn>
       </div>
     </div>
   );

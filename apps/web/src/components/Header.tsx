@@ -15,11 +15,9 @@ const NavItems = () => (
     <li>
       <Link href="/get-involved">Get Involved</Link>
     </li>
-    {/*
     <li>
-      <Link href="/meet-the-team">About</Link>
+      <Link href="/team">Our Team</Link>
     </li>
-    */}
   </>
 );
 

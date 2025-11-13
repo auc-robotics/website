@@ -38,7 +38,7 @@ export default function RootLayout({
     >
       <body className="bg-slate-100">
         <ClientProvider>
-          <div className="flex min-h-screen flex-col">
+          <div className="flex min-h-screen flex-col text-lg">
             <Header />
             <div className="flex-1">{children}</div>
             <Footer />

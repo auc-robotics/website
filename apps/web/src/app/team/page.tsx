@@ -118,7 +118,7 @@ const teams = [
     {
       src: "/team/Sama_Ahmed.jpg",
       name: "Sama Ahmed",
-      position: "Direcotor of Marketing",
+      position: "Head of Marketing",
       description: "Architectural Engineering Senior",
     },
     {
@@ -130,7 +130,7 @@ const teams = [
     {
       src: "/team/Nardine_Saleh.jpg",
       name: "Nardine Saleh",
-      position: "Director of Multimedia",
+      position: "Head of Multimedia",
       description: "Biology Senior",
     },
 

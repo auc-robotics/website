@@ -6,7 +6,7 @@ const teams = [
       src: "/team/Samar_Ahmed.jpg",
       name: "Samar Ahmed",
       position: "President",
-      description: "Computer Engineering Senior",
+      description: "Computer Science Senior",
     },
     {
       src: "/team/Ahmed_Hammad.jpg",

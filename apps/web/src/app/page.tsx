@@ -53,7 +53,7 @@ export default function Home() {
         <h2 className="mt-16 mb-8 text-center text-5xl font-bold md:mt-24 lg:text-7xl">
           WHAT WE DO
         </h2>
-        <div className="flex flex-col gap-8 lg:flex-row">
+        <div className="flex flex-col justify-center gap-8 lg:flex-row">
           <SlideIn delay="0ms">
             <Card>
               <div className="flex flex-col p-8">

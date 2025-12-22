@@ -123,7 +123,7 @@ const teams = [
     },
     {
       src: "/team/Habiba_Khalil.jpg",
-      name: "Habia Khalil",
+      name: "Habiba Khalil",
       position: "Head of Communications",
       description: "Computer Engineering Junior",
     },

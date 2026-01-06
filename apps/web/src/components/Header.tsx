@@ -13,6 +13,9 @@ import SidebarModal from "@/components/Sidebar";
 const NavItems = () => (
   <>
     <li>
+      <Link href="https://www.summit.aucrobotics.org">Summit</Link>
+    </li>
+    <li>
       <Link href="/get-involved">Get Involved</Link>
     </li>
     <li>
